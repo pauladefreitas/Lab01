@@ -1,0 +1,27 @@
+@startuml
+
+"Aluno" as a
+a -down-> (UC1)
+a -left-> (UC2)
+(UC1) .> (UC6) : include
+
+"Secretaria da universidade" as secretaria
+secretaria -> (UC5)
+
+"Professores" as p
+p -right-> (UC3)
+
+"Usuário" as user
+user -> (UC4)
+
+user <|-- p
+user <|-- a
+
+"Matricular em uma disciplina" as (UC1)
+"Cancelar matrícula" as (UC2)
+"Checar quais alunos estão matriculados" as (UC3)
+"Validar senha" as (UC4)
+"Gerar currículo" as (UC5)
+"Avisar o sistema de cobrança" as (UC6)
+
+@enduml
