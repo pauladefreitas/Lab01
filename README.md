@@ -35,7 +35,3 @@
 *Como* sistema de matrículas  
 *Eu quero* controlar o número de alunos matriculados em cada disciplina  
 *Para que* possa encerrar as inscrições ao atingir o limite de 60 alunos ou cancelar a disciplina se não atingir o número mínimo de 3 alunos.
-
-## Diagrama de casos de uso
-
-![Diagrama](diagrama.png)
