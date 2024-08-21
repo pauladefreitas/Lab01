@@ -1,21 +1,24 @@
 @startuml
 
 "Aluno" as a
-a -down-> (UC1)
+a -up-> (UC1)
 a -left-> (UC2)
 (UC1) .> (UC6) : include
+(UC8) .> (UC1) : extends
+(UC9) .> (UC2) : extends
 
 "Secretaria da universidade" as secretaria
-secretaria -> (UC5)
+secretaria -up-> (UC5)
+secretaria -> (UC7)
 
 "Professores" as p
 p -right-> (UC3)
 
 "Usuário" as user
-user -> (UC4)
+user -down-> (UC4)
 
-user <|-- p
-user <|-- a
+user <|-right- p
+user <|-left- a
 
 "Matricular em uma disciplina" as (UC1)
 "Cancelar matrícula" as (UC2)
@@ -23,5 +26,8 @@ user <|-- a
 "Validar senha" as (UC4)
 "Gerar currículo" as (UC5)
 "Avisar o sistema de cobrança" as (UC6)
+"Manter informações sobre disciplinas, alunos e professores" as (UC7)
+"Fechar matrícula" as (UC8)
+"Abrir matrícula" as (UC9)
 
 @enduml
