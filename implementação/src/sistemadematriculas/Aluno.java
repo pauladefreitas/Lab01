@@ -38,4 +38,9 @@ public class Aluno extends Usuario {
     public void cancelarMatricula(Disciplina disciplina) {
         
     }
+
+    @Override
+    public String toString() {
+        return null; //stub
+    }
 }
