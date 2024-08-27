@@ -11,11 +11,9 @@ public class Curso {
     public Curso(String nome, int numCreditos) {
         this.nome = nome;
         this.numCreditos = numCreditos;
-        System.out.println("Curso criado com nome: " + nome + ", número de créditos: " + numCreditos);
     }
 
     public String getNome() {
-        System.out.println("Retornando nome do curso: " + nome);
         return nome;
     }
 
@@ -39,8 +37,7 @@ public class Curso {
 
     @Override
     public String toString() {
-        String dadosCurso = "Curso{nome='" + nome + "', numCreditos=" + numCreditos + "}";
+        return "Curso{nome='" + nome + "', numCreditos=" + numCreditos + "}";
         System.out.println("Dados do curso: " + dadosCurso);
-        return dadosCurso;
     }
 }

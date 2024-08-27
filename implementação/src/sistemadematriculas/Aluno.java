@@ -13,11 +13,9 @@ public class Aluno extends Usuario {
         this.nome = nome;
         this.matricula = matricula;
         this.curso = curso;
-        System.out.println("Aluno criado com nome: " + nome + ", matrícula: " + matricula + ", curso: " + curso);
     }
 
     public Curso getCurso() {
-        System.out.println("Retornando curso: " + curso.getNome());
         return curso;
     }
 
@@ -48,9 +46,8 @@ public class Aluno extends Usuario {
 
     @Override
     public String toString() {
-        String dadosAluno = "Aluno{nome='" + nome + "', matricula='" + matricula + "', curso='" + curso.getNome() + "'}";
+        return "Aluno{nome='" + nome + "', matricula='" + matricula + "', curso='" + curso.getNome() + "'}";
         System.out.println("Dados do aluno: " + dadosAluno);
-        return dadosAluno;
     }
 
 }

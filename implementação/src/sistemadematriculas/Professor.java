@@ -10,11 +10,9 @@ public class Professor extends Usuario {
         super(senha);
         this.nome = nome;
         this.disciplina = disciplina;
-        System.out.println("Professor criado com nome: " + nome + ", disciplina: " + (disciplina != null ? disciplina.getNome() : "nenhuma") + ", senha: " + senha);
     }
 
     public String getNome() {
-        System.out.println("Retornando nome do professor: " + nome);
         return nome;
     }
 
@@ -26,5 +24,13 @@ public class Professor extends Usuario {
     public List<Aluno> listarAlunosMatriculados(Disciplina disciplina) {
         System.out.println("Listando alunos matriculados na disciplina: " + (disciplina != null ? disciplina.getNome() : "nenhuma"));
         return null;
+    }
+
+    @Override
+    public String toString() {
+        String disciplinaNome = (disciplina != null) ? disciplina.getNome() : "nenhuma";
+        String dadosProfessor = "Professor{nome='" + nome + "', disciplina='" + disciplinaNome + "'}";
+        System.out.println("Dados do professor: " + dadosProfessor);
+        return dadosProfessor;
     }
 }

@@ -14,11 +14,9 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
         this.ativa = false;
-        System.out.println("Disciplina criada com nome: " + nome + ", carga horária: " + cargaHoraria + ", professor: " + professor.getNome() + ", ativa: " + ativa);
     }
 
     public String getNome() {
-        System.out.println("Retornando nome da disciplina: " + nome);
         return nome;
     }
 
@@ -67,8 +65,6 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        String dadosDisciplina = "Disciplina{nome='" + nome + "', cargaHoraria=" + cargaHoraria + ", professor=" + professor.getNome() + ", ativa=" + ativa + "}";
-        System.out.println("Dados da disciplina: " + dadosDisciplina);
-        return dadosDisciplina;
+        return "Disciplina{nome='" + nome + "', cargaHoraria=" + cargaHoraria + ", professor=" + professor.getNome() + ", ativa=" + ativa + "}";
     }
 }

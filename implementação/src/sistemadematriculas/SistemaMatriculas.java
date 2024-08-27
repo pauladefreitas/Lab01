@@ -15,7 +15,6 @@ public class SistemaMatriculas {
     }
 
     public List<Curso> getCursos() {
-        System.out.println("Retornando lista de cursos: " + cursos);
         return this.cursos;
     }
 
