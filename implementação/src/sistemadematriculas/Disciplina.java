@@ -3,8 +3,8 @@ package sistemadematriculas;
 import java.util.List;
 
 public class Disciplina {
-    private String nome; 
-    private int cargaHoraria; 
+    private String nome;
+    private int cargaHoraria;
     private List<Aluno> alunos;
     private Professor professor;
     private boolean ativa;
@@ -14,46 +14,61 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
         this.ativa = false;
+        System.out.println("Disciplina criada com nome: " + nome + ", carga horária: " + cargaHoraria + ", professor: " + professor.getNome() + ", ativa: " + ativa);
     }
 
     public String getNome() {
-        return this.nome;
+        System.out.println("Retornando nome da disciplina: " + nome);
+        return nome;
     }
 
     public int getCargaHoraria() {
-        return this.cargaHoraria;
+        System.out.println("Retornando carga horária da disciplina: " + cargaHoraria);
+        return cargaHoraria;
     }
 
     public List<Aluno> getAlunos() {
-        return this.alunos;
+        System.out.println("Retornando lista de alunos da disciplina: " + alunos);
+        return alunos;
     }
 
     public Professor getProfessor() {
-        return this.professor;
+        System.out.println("Retornando professor da disciplina: " + professor.getNome());
+        return professor;
     }
 
     public boolean isAtiva() {
-        return this.ativa;
+        System.out.println("Verificando se a disciplina está ativa: " + ativa);
+        return ativa;
     }
 
     public boolean getAtiva() {
-        return this.ativa;
+        System.out.println("Retornando status de atividade da disciplina: " + ativa);
+        return ativa;
     }
 
     public void ativarDisciplina() {
-        
+        this.ativa = true;
+        System.out.println("Disciplina " + nome + " ativada.");
     }
 
     public void desativarDisciplina() {
-        
+        this.ativa = false;
+        System.out.println("Disciplina " + nome + " desativada.");
     }
 
     public void adicionarAluno(Aluno aluno) {
-        
+        System.out.println("Adicionando aluno " + aluno.getNome() + " à disciplina: " + nome);
     }
 
     public void removerAluno(Aluno aluno) {
-        
+        System.out.println("Removendo aluno " + aluno.getNome() + " da disciplina: " + nome);
     }
 
+    @Override
+    public String toString() {
+        String dadosDisciplina = "Disciplina{nome='" + nome + "', cargaHoraria=" + cargaHoraria + ", professor=" + professor.getNome() + ", ativa=" + ativa + "}";
+        System.out.println("Dados da disciplina: " + dadosDisciplina);
+        return dadosDisciplina;
+    }
 }

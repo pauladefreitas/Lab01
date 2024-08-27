@@ -13,34 +13,44 @@ public class Aluno extends Usuario {
         this.nome = nome;
         this.matricula = matricula;
         this.curso = curso;
+        System.out.println("Aluno criado com nome: " + nome + ", matrícula: " + matricula + ", curso: " + curso);
     }
 
     public Curso getCurso() {
-        return this.curso;
+        System.out.println("Retornando curso: " + curso.getNome());
+        return curso;
     }
 
     public String getNome() {
-        return this.nome;
+        System.out.println("Retornando nome: " + nome);
+        return nome;
     }
 
     public String getMatricula() {
-        return this.matricula;
+        System.out.println("Retornando matrícula: " + matricula);
+        return matricula;
     }
 
     public List<Disciplina> getDisciplinas() {
-        return this.disciplinas;
+        System.out.println("Retornando lista de disciplinas: " + disciplinas);
+        return disciplinas;
     }
 
     public void matricular(Disciplina disciplina) {
-        
+        System.out.println("Matriculando o aluno " + this.nome + " na disciplina: " + disciplina.getNome());
     }
 
+
     public void cancelarMatricula(Disciplina disciplina) {
-        
+        System.out.println("Cancelando a matrícula do aluno " + this.nome + " na disciplina: " + disciplina.getNome());
     }
+
 
     @Override
     public String toString() {
-        return null; //stub
+        String dadosAluno = "Aluno{nome='" + nome + "', matricula='" + matricula + "', curso='" + curso.getNome() + "'}";
+        System.out.println("Dados do aluno: " + dadosAluno);
+        return dadosAluno;
     }
+
 }
