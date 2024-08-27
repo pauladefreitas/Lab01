@@ -1,18 +1,17 @@
-package sistemadematriculas;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaMatriculas {
-    private List<Curso> cursos;
+    private List<Disciplina> disciplinas;
     private SistemaCobranca sistemaCobranca;
 
-    public SistemaMatriculas(List<Curso> cursos, SistemaCobranca sistemaCobranca) {
-        this.cursos = cursos;
+    public SistemaMatriculas(List<Disciplina> disciplinas, SistemaCobranca sistemaCobranca) {
+        this.disciplinas = disciplinas != null ? disciplinas : new ArrayList<>();
         this.sistemaCobranca = sistemaCobranca;
     }
 
-    public List<Curso> getCursos() {
-        return this.cursos;
+    public List<Disciplina> getDisciplinas() {
+        return this.disciplinas;
     }
 
     public SistemaCobranca getSistemaCobranca() {
@@ -21,21 +20,39 @@ public class SistemaMatriculas {
 
     public void matricularAluno(Aluno aluno, Disciplina disciplina) {
         if (aluno == null || disciplina == null) {
-            System.out.println("Aluno ou disciplina não fornecidos para matrícula.");
-        } else {
-            System.out.println("Matriculando o aluno " + aluno.getNome() + " na disciplina: " + disciplina.getNome());
-            aluno.matricularAluno(disciplina);
-            notificarSistemaCobrancas(aluno, disciplina);            
+            System.err.println("Aluno ou disciplina não fornecidos para matrícula.");
+            return;
+        } 
+        
+        else if (disciplina.getAlunos() != null && disciplina.getAlunos().contains(aluno)) {
+            System.out.println("O aluno " + aluno.getNome() + " já está matriculado na disciplina: " + disciplina.getNome());
+            return;
+        } 
+        
+        else {
+            aluno.matricular(disciplina);
+            disciplina.adicionarAluno(aluno);
+            System.out.println("Aluno " + aluno.getNome() + " matriculado na disciplina: " + disciplina.getNome());
+            notificarSistemaCobrancas(aluno, disciplina);
         }
     }
 
     public void cancelarMatricula(Aluno aluno, Disciplina disciplina) {
         if (aluno == null || disciplina == null) {
-            System.out.println("Aluno ou disciplina não fornecidos para cancelamento de matrícula.");
-        } else {
-            System.out.println("Cancelando a matrícula do aluno " + aluno.getNome() + " na disciplina: " + disciplina.getNome());
+            System.err.println("Aluno ou disciplina não fornecidos para cancelamento de matrícula.");
+            return;
+        }
+
+        else if (!disciplina.getAlunos().contains(aluno)) {
+            System.out.println("O aluno " + aluno.getNome() + " não está matriculado na disciplina: " + disciplina.getNome());
+            return;
+        } 
+
+        else {
             aluno.cancelarMatricula(disciplina);
-            notificarSistemaCobrancas(aluno, disciplina);            
+            disciplina.removerAluno(aluno);
+            System.out.println("Matrícula do aluno " + aluno.getNome() + " cancelada na disciplina: " + disciplina.getNome());
+            notificarSistemaCobrancas(aluno, disciplina);
         }
     }
 
@@ -48,6 +65,7 @@ public class SistemaMatriculas {
             System.out.println("Sistema de cobrança não configurado.");
             return;
         }
+
         sistemaCobranca.notificarCobranca(aluno, disciplina);
     }
 }

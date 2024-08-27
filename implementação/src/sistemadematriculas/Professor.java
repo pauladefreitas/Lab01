@@ -1,4 +1,4 @@
-package sistemadematriculas;
+
 
 import java.util.List;
 
@@ -20,16 +20,22 @@ public class Professor extends Usuario {
         return disciplina;
     }
 
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
     public List<Aluno> listarAlunosMatriculados(Disciplina disciplina) {
-        System.out.println("Listando alunos matriculados na disciplina: " + (disciplina != null ? disciplina.getNome() : "nenhuma"));
-        return null;
+        if (disciplina == null) {
+            System.out.println("Nenhuma disciplina fornecida.");
+            return null;
+        }
+        System.out.println("Listando alunos matriculados na disciplina: " + disciplina.getNome());
+        return disciplina.getAlunos();
     }
 
     @Override
     public String toString() {
         String disciplinaNome = (disciplina != null) ? disciplina.getNome() : "nenhuma";
-        String dadosProfessor = "Professor{nome='" + nome + "', disciplina='" + disciplinaNome + "'}";
-        System.out.println("Dados do professor: " + dadosProfessor);
-        return dadosProfessor;
+        return "Professor {nome='" + nome + "', disciplina='" + disciplinaNome + "'}";
     }
 }

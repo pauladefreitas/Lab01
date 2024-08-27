@@ -1,5 +1,6 @@
-package sistemadematriculas;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
@@ -11,6 +12,7 @@ public class Curso {
     public Curso(String nome, int numCreditos) {
         this.nome = nome;
         this.numCreditos = numCreditos;
+        this.disciplinas = new ArrayList<>();
     }
 
     public String getNome() {
@@ -32,9 +34,9 @@ public class Curso {
 
     public void removerDisciplina(Disciplina disciplina) {
         if (disciplinas.remove(disciplina)) {
-            System.out.println("Removendo disciplina: " + disciplina.getNome() + " do curso: " + nome);
+            System.out.println("Removendo disciplina: " + disciplina.getNome() + " do curso " + nome);
         } else {
-            System.out.println("Disciplina " + disciplina.getNome() + " não está matriculado na disciplina: " + nome);
+            System.out.println("Disciplina " + disciplina.getNome() + " não está no curso " + nome);
         }
     }
 

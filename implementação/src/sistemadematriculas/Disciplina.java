@@ -1,5 +1,6 @@
-package sistemadematriculas;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Disciplina {
@@ -14,6 +15,7 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
         this.ativa = false;
+        this.alunos = new ArrayList<>();
     }
 
     public String getNome() {
