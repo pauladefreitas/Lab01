@@ -2,12 +2,18 @@ package sistemadematriculas;
 
 public class SistemaCobranca {
 
+    private Boolean notificar = false;
+
     public void notificarCobranca(Aluno aluno, Disciplina disciplina) {
         if (aluno == null || disciplina == null) {
             System.out.println("Aluno ou disciplina não fornecidos para a cobrança.");
-            return;
+        } else {
+            System.out.println("Notificando cobrança para o aluno: " + aluno.getNome() + " na disciplina: " + disciplina.getNome());
+            notificar = true;
         }
-        System.out.println("Notificando cobrança para o aluno: " + aluno.getNome() +
-                           " na disciplina: " + disciplina.getNome());
+    }
+
+    public Boolean isNotificado() {
+        return notificar;
     }
 }
