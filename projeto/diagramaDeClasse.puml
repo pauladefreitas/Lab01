@@ -1,6 +1,8 @@
 @startuml
 
 class Usuario {
+  #nome: String
+  #id: String
   #senha: String
   #logado: Boolean
   +logar(senha: String): void
@@ -64,7 +66,7 @@ class SistemaCobranca {
 }
 
 class SistemaMatriculas {
-  -cursos: List<Curso>
+  -disciplina: List<Disciplina>
   -sistemaCobranca: SistemaCobranca
   +matricularAluno(aluno: Aluno, disciplina: Disciplina): void
   +cancelarMatricula(aluno: Aluno, disciplina: Disciplina): void
@@ -76,10 +78,10 @@ Usuario <|-- Aluno
 Usuario <|-- Professor
 Aluno -- Disciplina 
 Disciplina --  Professor
-Curso -- Disciplina 
 SistemaMatriculas -- SistemaCobranca 
 SecretariaUniversidade -- Aluno
 SecretariaUniversidade -- Disciplina 
-SecretariaUniversidade -- Professor 
+SecretariaUniversidade -- Professor
+Curso o-- Disciplina
 
 @enduml
