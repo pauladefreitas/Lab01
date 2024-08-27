@@ -18,26 +18,28 @@ public class Curso {
     }
 
     public int getNumCreditos() {
-        System.out.println("Retornando número de créditos do curso: " + numCreditos);
         return numCreditos;
     }
 
     public List<Disciplina> getDisciplinas() {
-        System.out.println("Retornando lista de disciplinas do curso: " + disciplinas);
         return disciplinas;
     }
 
     public void adicionarDisciplina(Disciplina disciplina) {
         System.out.println("Adicionando disciplina: " + disciplina.getNome() + " ao curso: " + nome);
+        disciplinas.add(disciplina); 
     }
 
     public void removerDisciplina(Disciplina disciplina) {
-        System.out.println("Removendo disciplina: " + disciplina.getNome() + " do curso: " + nome);
+        if (disciplinas.remove(disciplina)) {
+            System.out.println("Removendo disciplina: " + disciplina.getNome() + " do curso: " + nome);
+        } else {
+            System.out.println("Disciplina " + disciplina.getNome() + " não está matriculado na disciplina: " + nome);
+        }
     }
 
     @Override
     public String toString() {
         return "Curso{nome='" + nome + "', numCreditos=" + numCreditos + "}";
-        System.out.println("Dados do curso: " + dadosCurso);
     }
 }

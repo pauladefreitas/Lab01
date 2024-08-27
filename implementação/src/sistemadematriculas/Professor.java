@@ -17,7 +17,6 @@ public class Professor extends Usuario {
     }
 
     public Disciplina getDisciplina() {
-        System.out.println("Retornando disciplina do professor: " + (disciplina != null ? disciplina.getNome() : "nenhuma"));
         return disciplina;
     }
 

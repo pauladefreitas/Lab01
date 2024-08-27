@@ -8,7 +8,6 @@ public class Usuario {
     public Usuario(String senha) {
         this.senha = senha;
         this.logado = false;
-        System.out.println("Usuário criado com senha: " + senha + " e status de login: " + logado);
     }
 
     public void logar(String senha) {

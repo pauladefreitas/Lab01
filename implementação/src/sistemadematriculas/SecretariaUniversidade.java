@@ -1,6 +1,7 @@
 package sistemadematriculas;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class SecretariaUniversidade {
     private List<Disciplina> disciplinas;
@@ -8,21 +9,24 @@ public class SecretariaUniversidade {
     private List<Professor> professores;
 
     public SecretariaUniversidade(List<Disciplina> disciplinas, List<Aluno> alunos, List<Professor> professores) {
-        this.disciplinas = disciplinas;
-        this.alunos = alunos;
-        this.professores = professores;
+        this.disciplinas = disciplinas != null ? disciplinas : new ArrayList<>();
+        this.alunos = alunos != null ? alunos : new ArrayList<>();
+        this.professores = professores != null ? professores : new ArrayList<>();
     }
 
-    public List<Disciplina> getDisciplinas() {
-        return this.disciplinas;
+    public void addAluno(Aluno aluno) {
+        alunos.add(aluno);
+        System.out.println("Aluno " + aluno.getNome() + " adicionado."); //fazer checagem de matrícula
     }
 
-    public List<Aluno> getAlunos() {
-        return this.alunos;
+    public void addProfessor(Professor professor) {
+        professores.add(professor);
+        System.out.println("Professor " + professor.getNome() + " adicionado.");
     }
 
-    public List<Professor> getProfessores() {
-        return this.professores;
+    public void addDisciplina(Disciplina disciplina) {
+        disciplinas.add(disciplina);
+        System.out.println("Disciplina " + disciplina.getNome() + " adicionada.");
     }
 
     public String gerarCurriculo() {

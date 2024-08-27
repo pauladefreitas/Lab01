@@ -20,34 +20,35 @@ public class Aluno extends Usuario {
     }
 
     public String getNome() {
-        System.out.println("Retornando nome: " + nome);
         return nome;
     }
 
     public String getMatricula() {
-        System.out.println("Retornando matrícula: " + matricula);
         return matricula;
     }
 
     public List<Disciplina> getDisciplinas() {
-        System.out.println("Retornando lista de disciplinas: " + disciplinas);
         return disciplinas;
     }
 
     public void matricular(Disciplina disciplina) {
         System.out.println("Matriculando o aluno " + this.nome + " na disciplina: " + disciplina.getNome());
+        disciplinas.add(disciplina);
+        disciplina.adicionarAluno(aluno);
     }
-
 
     public void cancelarMatricula(Disciplina disciplina) {
-        System.out.println("Cancelando a matrícula do aluno " + this.nome + " na disciplina: " + disciplina.getNome());
+        if (disciplinas.remove(disciplina)) {
+            System.out.println("Removendo disciplina " + disciplina.getNome() + " da disciplina: " + nome);
+            disciplina.cancelarMatricula(aluno);
+        } else {
+            System.out.println("Aluno " + this.nome + " não está matriculado na disciplina: " + disciplina.getNome());
+        }
     }
-
 
     @Override
     public String toString() {
         return "Aluno{nome='" + nome + "', matricula='" + matricula + "', curso='" + curso.getNome() + "'}";
         System.out.println("Dados do aluno: " + dadosAluno);
     }
-
 }

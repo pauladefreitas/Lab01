@@ -21,27 +21,22 @@ public class Disciplina {
     }
 
     public int getCargaHoraria() {
-        System.out.println("Retornando carga horária da disciplina: " + cargaHoraria);
         return cargaHoraria;
     }
 
     public List<Aluno> getAlunos() {
-        System.out.println("Retornando lista de alunos da disciplina: " + alunos);
         return alunos;
     }
 
     public Professor getProfessor() {
-        System.out.println("Retornando professor da disciplina: " + professor.getNome());
         return professor;
     }
 
     public boolean isAtiva() {
-        System.out.println("Verificando se a disciplina está ativa: " + ativa);
         return ativa;
     }
 
     public boolean getAtiva() {
-        System.out.println("Retornando status de atividade da disciplina: " + ativa);
         return ativa;
     }
 
@@ -57,10 +52,15 @@ public class Disciplina {
 
     public void adicionarAluno(Aluno aluno) {
         System.out.println("Adicionando aluno " + aluno.getNome() + " à disciplina: " + nome);
+        alunos.add(aluno);
     }
 
     public void removerAluno(Aluno aluno) {
-        System.out.println("Removendo aluno " + aluno.getNome() + " da disciplina: " + nome);
+        if (alunos.remove(aluno)) {
+            System.out.println("Removendo aluno " + aluno.getNome() + " da disciplina: " + nome);
+        } else {
+            System.out.println("Aluno " + aluno.getNome() + " não está matriculado na disciplina: " + nome);
+        }
     }
 
     @Override
