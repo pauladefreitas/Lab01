@@ -2,6 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import sistemadematriculas.Aluno;
+import sistemadematriculas.Curso;
+import sistemadematriculas.Disciplina;
+import sistemadematriculas.Professor;
+import sistemadematriculas.SecretariaUniversidade;
+import sistemadematriculas.SistemaCobranca;
+import sistemadematriculas.SistemaMatriculas;
+
 public class App {
 
     private static Scanner scanner = new Scanner(System.in);
@@ -39,7 +47,7 @@ public class App {
                     String matricula = scanner.nextLine();
                     System.out.println("Digite o nome do curso:");
                     String nomeCurso = scanner.nextLine();
-                    Curso curso = new Curso(nomeCurso, 0); // Exemplo com dados fictícios
+                    Curso curso = new Curso(nomeCurso, 0); 
                     Aluno aluno = new Aluno("senha123", nomeAluno, matricula, curso);
                     alunos.add(aluno);
                     System.out.println("Aluno cadastrado com sucesso.");
@@ -51,8 +59,8 @@ public class App {
                     String nomeCursoCadastro = scanner.nextLine();
                     System.out.println("Digite o número de créditos do curso:");
                     int numCreditos = scanner.nextInt();
-                    scanner.nextLine(); // Consumir a nova linha
-                    Curso cursoCadastro = new Curso(nomeCursoCadastro, numCreditos); // Exemplo com carga horária fictícia
+                    scanner.nextLine(); 
+                    Curso cursoCadastro = new Curso(nomeCursoCadastro, numCreditos); 
                     cursos.add(cursoCadastro);
                     System.out.println("Curso cadastrado com sucesso.");
                     System.out.println("------------------------------");
@@ -63,10 +71,10 @@ public class App {
                     String nomeDisciplina = scanner.nextLine();
                     System.out.println("Digite a carga horária da disciplina:");
                     int cargaHoraria = scanner.nextInt();
-                    scanner.nextLine(); // Consumir a nova linha
+                    scanner.nextLine(); 
                     System.out.println("Digite o nome do professor:");
                     String nomeProfessor = scanner.nextLine();
-                    Professor professor = new Professor(nomeProfessor, null, "senha123"); // Exemplo com dados fictícios
+                    Professor professor = new Professor(nomeProfessor, null, "senha123"); 
                     Disciplina disciplina = new Disciplina(nomeDisciplina, cargaHoraria, professor);
                     disciplinas.add(disciplina);
                     System.out.println("Disciplina cadastrada com sucesso.");
