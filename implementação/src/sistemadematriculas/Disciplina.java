@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +7,9 @@ public class Disciplina {
     private List<Aluno> alunos;
     private Professor professor;
     private boolean ativa;
+    private Curso curso; 
+    private boolean obrigatorio;
+    private int numCreditos;
 
     public Disciplina(String nome, int cargaHoraria, Professor professor) {
         this.nome = nome;
@@ -34,25 +35,23 @@ public class Disciplina {
         return professor;
     }
 
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public boolean isObrigatorio() {
+        return obrigatorio;
+    }
+
     public boolean isAtiva() {
-        return ativa;
+        return ativa = true;
     }
 
-    public boolean getAtiva() {
-        return ativa;
+    public int getnumCreditos() {
+        return numCreditos;
     }
 
-    public void ativarDisciplina() {
-        this.ativa = true;
-        System.out.println("Disciplina " + nome + " ativada.");
-    }
-
-    public void desativarDisciplina() {
-        this.ativa = false;
-        System.out.println("Disciplina " + nome + " desativada.");
-    }
-
-    public void adicionarAluno(Aluno aluno) {
+    public void addAluno(Aluno aluno) {
         System.out.println("Adicionando aluno " + aluno.getNome() + " à disciplina: " + nome);
         alunos.add(aluno);
     }
@@ -65,8 +64,18 @@ public class Disciplina {
         }
     }
 
+    public void periodoMatricula() {
+        if (alunos.size() >= 3) {
+            this.ativa = true;
+            System.out.println("Disciplina " + nome + " será ofertada no próximo semestre.");
+        } else {
+            this.ativa = false;
+            System.out.println("Disciplina " + nome + " não atingiu o número mínimo de alunos e será cancelada.");
+        }
+    }
+
     @Override
     public String toString() {
-        return "Disciplina{nome='" + nome + "', cargaHoraria=" + cargaHoraria + ", professor=" + professor.getNome() + ", ativa=" + ativa + "}";
+        return "Disciplina: Nome = " + nome + ";\nCarga horária = " + cargaHoraria + ";\nProfessor = " + professor.getNome() + ";\nAtiva = " + ativa;
     }
 }

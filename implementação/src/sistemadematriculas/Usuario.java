@@ -1,5 +1,3 @@
-
-
 public class Usuario {
     protected String senha;
     protected Boolean logado; 

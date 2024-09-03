@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +40,6 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Curso{nome='" + nome + "', numCreditos=" + numCreditos + "}";
+        return "Curso: Nome = " + nome + ".\n O número de créditos é " + numCreditos + ";\nAs disciplinas que o compõem são: " + disciplinas;
     }
 }

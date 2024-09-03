@@ -1,5 +1,3 @@
-
-
 public class SistemaCobranca {
 
     private Boolean notificar = false;
@@ -12,7 +10,7 @@ public class SistemaCobranca {
             notificar = true;
         }
     }
-
+    
     public Boolean isNotificado() {
         return notificar;
     }

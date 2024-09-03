@@ -4,10 +4,12 @@ import java.util.List;
 public class SistemaMatriculas {
     private List<Disciplina> disciplinas;
     private SistemaCobranca sistemaCobranca;
+    private boolean pMatricula; 
 
     public SistemaMatriculas(List<Disciplina> disciplinas, SistemaCobranca sistemaCobranca) {
         this.disciplinas = disciplinas != null ? disciplinas : new ArrayList<>();
         this.sistemaCobranca = sistemaCobranca;
+        this.pMatricula = false;
     }
 
     public List<Disciplina> getDisciplinas() {
@@ -19,6 +21,12 @@ public class SistemaMatriculas {
     }
 
     public void matricularAluno(Aluno aluno, Disciplina disciplina) {
+
+        if (!pMatricula) {
+            System.out.println("O período de matrículas está fechado. Matrícula não permitida.");
+            return;
+        }
+
         if (aluno == null || disciplina == null) {
             System.err.println("Aluno ou disciplina não fornecidos para matrícula.");
             return;
@@ -29,14 +37,34 @@ public class SistemaMatriculas {
             return;
         } 
         
-        else {
-            aluno.matricular(disciplina);
-            disciplina.adicionarAluno(aluno);
+        else if (disciplina.getAlunos().size() < 60) {
+
+            long obrigatorias = aluno.getCurso().getDisciplinas().stream()
+            .filter(d -> d.isObrigatorio() && d.getAlunos().contains(aluno))
+            .count();
+    
+            long optativas = aluno.getCurso().getDisciplinas().stream()
+                .filter(d -> !d.isObrigatorio() && d.getAlunos().contains(aluno))
+                .count();
+
+                if (disciplina.isObrigatorio()) {
+                    if (obrigatorias >= 4) {
+                        System.out.println("O aluno " + aluno.getNome() + " já está matriculado em 4 disciplinas obrigatórias.");
+                        return;
+                    }
+                } else {
+                    if (optativas >= 2) {
+                        System.out.println("O aluno " + aluno.getNome() + " já está matriculado em 2 disciplinas optativas.");
+                        return;
+                    }
+                } 
+
+            disciplina.addAluno(aluno);
             System.out.println("Aluno " + aluno.getNome() + " matriculado na disciplina: " + disciplina.getNome());
             notificarSistemaCobrancas(aluno, disciplina);
         }
     }
-
+    
     public void cancelarMatricula(Aluno aluno, Disciplina disciplina) {
         if (aluno == null || disciplina == null) {
             System.err.println("Aluno ou disciplina não fornecidos para cancelamento de matrícula.");
@@ -49,7 +77,6 @@ public class SistemaMatriculas {
         } 
 
         else {
-            aluno.cancelarMatricula(disciplina);
             disciplina.removerAluno(aluno);
             System.out.println("Matrícula do aluno " + aluno.getNome() + " cancelada na disciplina: " + disciplina.getNome());
             notificarSistemaCobrancas(aluno, disciplina);
@@ -57,7 +84,17 @@ public class SistemaMatriculas {
     }
 
     public void finalizarPeriodoMatriculas() {
+        pMatricula = false;
         System.out.println("Finalizando o período de matrículas.");
+        
+        for (Disciplina disciplina : disciplinas) {
+            disciplina.periodoMatricula();
+        }
+    }
+
+    public void abrirPeriodoMatriculas() {
+        pMatricula = true;
+        System.out.println("Abrindo o período de matrículas.");
     }
 
     private void notificarSistemaCobrancas(Aluno aluno, Disciplina disciplina) {

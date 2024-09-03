@@ -1,41 +1,39 @@
-
-
 import java.util.List;
+import java.util.ArrayList;
 
 public class Professor extends Usuario {
     private String nome;
-    private Disciplina disciplina;
+    private List<Disciplina> disciplinas;
 
-    public Professor(String nome, Disciplina disciplina, String senha) {
+    public Professor(String nome, String senha) {
         super(senha);
         this.nome = nome;
-        this.disciplina = disciplina;
+        this.disciplinas = new ArrayList<Disciplina>();
     }
 
     public String getNome() {
         return nome;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
     }
 
     public List<Aluno> listarAlunosMatriculados(Disciplina disciplina) {
-        if (disciplina == null) {
-            System.out.println("Nenhuma disciplina fornecida.");
+        if (disciplinas.contains(disciplina)) {
+            return disciplina.getAlunos();
+        } else {
+            System.out.println("O professor não leciona esta disciplina.");
             return null;
         }
-        System.out.println("Listando alunos matriculados na disciplina: " + disciplina.getNome());
-        return disciplina.getAlunos();
+    }
+
+    public void addDisciplinas(Disciplina disciplina) {
+        disciplinas.add(disciplina); 
     }
 
     @Override
     public String toString() {
-        String disciplinaNome = (disciplina != null) ? disciplina.getNome() : "nenhuma";
-        return "Professor {nome='" + nome + "', disciplina='" + disciplinaNome + "'}";
+        return "Professor: \n Nome = " + nome + ".\nDisciplinas que leciona = " + disciplinas;
     }
 }
