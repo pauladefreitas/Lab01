@@ -40,7 +40,7 @@ public class Disciplina {
     private boolean ativa;
 
     @ManyToOne
-    @JoinColumn(name = "curso_id")
+    @JoinColumn(name = "curso_id", nullable = false) // Torna o curso obrigatório
     private Curso curso;
 
     @Column(name = "obrigatorio")
@@ -49,12 +49,14 @@ public class Disciplina {
     @Column(name = "numCreditos")
     private int numCreditos;
 
-    public Disciplina(String nome, int cargaHoraria, Professor professor) {
+    // Construtor atualizado
+    public Disciplina(String nome, int cargaHoraria, Professor professor, Curso curso) {
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
         this.ativa = false;
         this.alunos = new ArrayList<>();
+        this.curso = curso; // Associação obrigatória com curso
     }
 
     public String getNome() {
