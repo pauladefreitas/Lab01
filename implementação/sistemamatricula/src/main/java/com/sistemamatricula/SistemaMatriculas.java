@@ -1,18 +1,12 @@
 package com.sistemamatricula;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class SistemaMatriculas {
@@ -22,10 +16,6 @@ public class SistemaMatriculas {
     @Column(name = "sistemamatricula_id", unique = true, nullable = false)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "disciplina_id")
-    private List<Disciplina> disciplinas;
-
     @ManyToOne
     @JoinColumn(name = "cobranca_id")
     private Cobranca sistemaCobranca;
@@ -33,14 +23,13 @@ public class SistemaMatriculas {
     @Column(name = "pMatricula")
     private boolean pMatricula; 
 
-    public SistemaMatriculas(List<Disciplina> disciplinas, Cobranca sistemaCobranca) {
-        this.disciplinas = disciplinas != null ? disciplinas : new ArrayList<>();
+    public SistemaMatriculas(Cobranca sistemaCobranca) {
         this.sistemaCobranca = sistemaCobranca;
         this.pMatricula = false;
     }
 
-    public List<Disciplina> getDisciplinas() {
-        return this.disciplinas;
+    public SistemaMatriculas() {
+
     }
 
     public Cobranca getSistemaCobranca() {
@@ -113,10 +102,6 @@ public class SistemaMatriculas {
     public void finalizarPeriodoMatriculas() {
         pMatricula = false;
         System.out.println("Finalizando o período de matrículas.");
-        
-        for (Disciplina disciplina : disciplinas) {
-            disciplina.periodoMatricula();
-        }
     }
 
     public void abrirPeriodoMatriculas() {

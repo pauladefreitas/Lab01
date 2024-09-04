@@ -24,6 +24,10 @@ public class Professor extends Usuario {
         this.disciplinas = new ArrayList<Disciplina>();
     }
 
+    public Professor() {
+        
+    }
+
     public String getNome() {
         return nome;
     }

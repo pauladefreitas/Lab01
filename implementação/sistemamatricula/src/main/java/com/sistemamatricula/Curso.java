@@ -10,7 +10,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -27,14 +26,17 @@ public class Curso {
     @Column
     private int numCreditos;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "disciplina_id")
-    private List<Disciplina> disciplinas;
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Disciplina> disciplinas;    
 
     public Curso(String nome, int numCreditos) {
         this.nome = nome;
         this.numCreditos = numCreditos;
         this.disciplinas = new ArrayList<>();
+    }
+
+    public Curso() {
+
     }
 
     public String getNome() {

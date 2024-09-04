@@ -25,6 +25,10 @@ public class Usuario {
         this.logado = false;
     }
 
+    public Usuario() {
+        
+    }
+
     public void logar(String senha) {
         if (this.senha.equals(senha)) {
             this.logado = true;
