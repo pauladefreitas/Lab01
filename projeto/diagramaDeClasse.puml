@@ -16,9 +16,6 @@ class Aluno {
   -nome: String
   -matricula: String
   -curso: Curso
-  -disciplinas: List<Disciplina>
-  +matricular(disciplina: Disciplina): void
-  +cancelarMatricula(disciplina: Disciplina): void
   +toString(): String
 }
 
@@ -26,6 +23,7 @@ class Professor {
   -nome: String
   -disciplina: Disciplina
   +listarAlunosMatriculados(disciplina: Disciplina): List<Aluno>
+  +addDisciplinas(disciplina Disciplina): void
   +toString(): String
 
 }
@@ -38,14 +36,18 @@ class Disciplina {
   -ativa: Boolean
   +ativarDisciplina(): void
   +desativarDisciplina(): void
-  +adicionarAluno(aluno: Aluno): void
+  +isAtiva(): Boolean
+  +isObrigatorio(): Boolean
+  +addAluno(aluno: Aluno): void
   +removerAluno(aluno: Aluno): void
+  +periodoMatricular(): void
   +toString(): String
 
 }
 
 class Curso {
   -nome: String
+  -id: String
   -numCreditos: int
   -disciplinas: List<Disciplina>
   +adicionarDisciplina(disciplina: Disciplina): void
@@ -61,13 +63,13 @@ class SecretariaUniversidade {
   +gerarCurriculo(): String
 }
 
-class SistemaCobranca {
+class Cobranca {
   +notificarCobranca(aluno: Aluno, disciplina: Disciplina): void
 }
 
 class SistemaMatriculas {
   -disciplina: List<Disciplina>
-  -sistemaCobranca: SistemaCobranca
+  -cobranca: Cobranca
   +matricularAluno(aluno: Aluno, disciplina: Disciplina): void
   +cancelarMatricula(aluno: Aluno, disciplina: Disciplina): void
   +finalizarPeriodoMatriculas(): void
@@ -78,7 +80,7 @@ Usuario <|-- Aluno
 Usuario <|-- Professor
 Aluno -- Disciplina 
 Disciplina --  Professor
-SistemaMatriculas -- SistemaCobranca 
+SistemaMatriculas -- Cobranca 
 SecretariaUniversidade -- Aluno
 SecretariaUniversidade -- Disciplina 
 SecretariaUniversidade -- Professor
