@@ -29,7 +29,11 @@ public class App {
         
         em.getTransaction().begin();
 
-        while (!sair) {
+        System.out.println("\n\n\n");
+        while (!sair) {  
+            System.out.println("------------------------------");
+            System.out.println("    Sistema de Metrícula");      
+            System.out.println();    
             System.out.println("Escolha uma opção:");
             System.out.println("1. Cadastrar Aluno");
             System.out.println("2. Cadastrar Curso");
@@ -40,6 +44,7 @@ public class App {
             System.out.println("7. Gerar Currículo");
             System.out.println("8. Sair");
             System.out.println("9. Abrir período de matrículas");
+            System.out.println("------------------------------");
 
             int escolha = scanner.nextInt();
             scanner.nextLine();
