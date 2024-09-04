@@ -100,6 +100,7 @@ public class App {
 
                     if (alunoMatricula != null && disciplinaMatricula != null) {
                         sistemaMatriculas.matricularAluno(alunoMatricula, disciplinaMatricula);
+                        sistemaCobranca.notificarCobranca(alunoMatricula, disciplinaMatricula);
                         System.out.println("Aluno matriculado com sucesso.");
                     } else {
                         System.out.println("Aluno ou disciplina não encontrados.");
